@@ -20,14 +20,14 @@ endif
 build: build-stamp
 build-stamp:
 	dh_testdir
-	python2.3 setup.py build
+	python2.7 setup.py build
 	touch $@
 
 clean: 
 	dh_testdir
 	dh_testroot
 	rm -f *-stamp
-	python2.3 setup.py clean
+	python2.7 setup.py clean
 	rm -rf build
 	dh_clean 
 
@@ -36,7 +36,7 @@ install: build
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-	python2.3 setup.py install --no-compile --prefix=$(CURDIR)/debian/pyslide/usr
+	python2.7 setup.py install --no-compile --prefix=$(CURDIR)/debian/pyslide/usr
 
 binary-indep: build install
 
@@ -53,7 +53,7 @@ binary-arch: build install
 	dh_strip 
 	dh_compress -Xexamples
 	dh_fixperms 
-	dh_python 
+	dh_python2
 	dh_makeshlibs 
 	dh_installdeb 
 	dh_shlibdeps 

@@ -2,13 +2,13 @@ Source: pyslide
 Section: python
 Priority: optional
 Maintainer: Tomas Guemes <tomas@enosig.org>
-Build-Depends: debhelper (>= 4.1.67), python, python2.3, python2.3-dev, python2.3-pygame, libsdl1.2-dev
+Build-Depends: debhelper (>= 4.1.67), python, python2.7, python2.7-dev, python-pygame, libsdl1.2-dev
 Standards-Version: 3.6.1
 
 Package: pyslide
 Architecture: any
-Depends: ${python:Depends}, ${shlibs:Depends}, python2.3-pygame, python2.3-xml
-Suggests: python2.3-imaging
+Depends: ${python:Depends}, ${shlibs:Depends}, python-pygame
+Suggests: python2.7-imaging
 Description: Tiny but powerful program to make animated presentations
  Pyslide allows you to make presentations with text, images and shapes, loads
  different fonts from TTF files, animate them and make a variety of alpha
