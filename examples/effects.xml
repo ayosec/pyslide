@@ -1,0 +1,239 @@
+<presentation caption="Effects" bg="blue.jpg">
+
+    <style>
+        .show-front {
+            open-set: 0;
+            front-set: 255;
+            back-set: 0;
+            close-set: 0;
+        }
+
+        list  {
+            font-size: 50;
+            list-type: square;
+        }
+
+        lbox {
+            item-type: text;
+            y: 500;
+            align: center;
+            shadow: none;
+            effect-alpha: show-front;
+            font-size: 40;
+        }
+
+        desclist {
+            item-type: text;
+            color: yellow;
+            font-size: 80;
+            effect-move: dlmove;
+            effect-alpha: dlalpha;
+        }
+
+        .dlmove {
+            open-end: center;
+            open-start: 1000,750;
+            front-end: center;
+            back-end: origin;
+            speed: 700;
+        }
+
+        .dlalpha {
+            front-set: 255;
+            back-set: 128;
+        }
+
+        .titlemove {
+            back-end: origin;
+            open-start: 0,0;
+            speed: 500;
+        }
+
+        title {
+            item-type: text;
+            effect-move: titlemove;
+            align: right;
+            font-size: 80;
+            color: wheat;
+        }
+
+        intro {
+            item-type: text;
+            x: 20;
+            font-size: 40;
+        }
+
+        ldef {
+            item-type: list;
+            list-depth: 1;
+            font-size: 35;
+        }
+
+        .doc-alpha {
+            open-type: horizontal;
+            open-speed: 700;
+        }
+
+        doc {
+            item-type: text;
+            y: +20;
+            color: greenyellow;
+            shadow: none;
+            font-size: 40;
+            effect-alpha: doc-alpha;
+        }
+    </style>
+
+    <page>
+        <group>
+            <text>A simple demostration of effects</text>
+            <list y="+20">States</list>
+            <list>Effects</list>
+            <list>Creating effects</list>
+            <list>Alpha</list>
+            <list>Move</list>
+        </group>
+    </page>
+
+    <page>
+        <group>
+            <title>States</title>
+            <intro>Four effect states</intro>
+
+            <desclist xy="10,160">open</desclist>
+            <lbox>"open" is used when the item is created</lbox>
+        </group>
+        <group>
+            <desclist xy="10,240">front</desclist>
+            <lbox>"front" is used when the item belongs to the
+                current group</lbox>
+        </group>
+        <group>
+            <desclist xy="10,320">back</desclist>
+            <lbox>"back" is used when the item belongs to a previous group</lbox>
+        </group>
+        <group>
+            <desclist xy="10,400">close</desclist>
+            <lbox>"close" is used when the item is going to be removed</lbox>
+        </group>
+        <group>
+            <lbox font-size="70">THAT'S ALL</lbox>
+        </group>
+    </page>
+
+    <page>
+        <group>
+            <title>Effects</title>
+            <intro>Two effects</intro>
+        </group>
+        <group>
+            <list>Alpha</list>
+            <ldef>Manipulate the alpha channel of the item</ldef>
+        </group>
+        <group>
+            <list>Move</list>
+            <ldef>Move the item on the page</ldef>
+        </group>
+    </page>
+
+    <page>
+        <group>
+            <title>Creating effects</title>
+            <intro>Few rules for create effects</intro>
+        </group>
+
+        <group>
+            <doc>Create a CSS class, with the effects parameters</doc>
+        </group>
+        <group>
+            <doc>In that class, attributes are in the 
+                form &lt;state&gt;-&lt;param&gt;, where ...</doc>
+        </group>
+        <group>
+            <doc>... &lt;state&gt; can be "open", "front", "back" or "close", and ...</doc>
+        </group>
+        <group>
+            <doc>... &lt;param&gt; depend on the effect.</doc>
+        </group>
+        <group>
+            <text font-size="50" y="+30">And, with that class,</text>
+        </group>
+        <group>
+            <doc>Apply the effect to the item with effect-&lt;effect&gt;="&lt;classname&gt;" attribute</doc>
+        </group>
+    </page>
+
+    <page>
+        <group>
+            <!-- not very usefull page (nvup) -->
+            <style>
+                .nvup-alpha {
+                    type: full;
+                    open-time: 40;
+                    close-time: 30;
+                }
+                .nvup-move {
+                    open-start: 0,0;
+                    end: 100,750;
+                    speed: 200;
+                }
+            </style>
+            <text
+                ttl="30"
+                effect-move="nvup-move"
+                effect-alpha="nvup-alpha">And now..</text>
+            <text
+                ttl="30" wait="20"
+                effect-move="nvup-move"
+                effect-alpha="nvup-alpha">... how to create class effects</text>
+        </group>
+    </page>
+
+    <page>
+        <group>
+            <title>Alpha</title>
+            <intro>Attributes for alpha effects</intro>
+            <intro>There is two ways: dinamic and staic</intro>
+        </group>
+        <group>
+            <text>Dinamic</text>
+            <list>type</list>
+            <ldef>full, "horizontal" or "vertical"</ldef>
+        </group>
+        <group>
+            <list>time / speed</list>
+            <ldef>speed in pixels/second</ldef>
+        </group>
+        <group>
+            <list>direction</list>
+            <ldef>Only for horizontal and vertical. Can be "positive" or "negative"</ldef>
+        </group>
+        <group>
+            <list>hide</list>
+        </group>
+
+        <group>
+            <text>Static</text>
+            <list>set</list>
+            <ldef>Use a value between 0 and 255</ldef>
+        </group>
+    </page>
+
+    <page>
+        <group>
+            <title>Move</title>
+            <intro>Attributes for move effects</intro>
+        </group>
+        <group>
+            <list>start / end</list>
+            <ldef>Start and end point of the motion. They default to the 
+                current point</ldef>
+            <ldef>Can be "center" or "origin"</ldef>
+        </group>
+        <group>
+            <list>speed / time</list>
+            <ldef>speed in pixels/second</ldef>
+        </group>
+    </page>
+
+</presentation>

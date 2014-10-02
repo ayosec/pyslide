@@ -1,0 +1,221 @@
+<presentation bg="blue.jpg" caption="Pyslide demo">
+    <style source="full.css"/>
+    <page>
+        <group>
+            <maintitle>Pyslide</maintitle>
+            <separator/>
+
+            <front-start>Full demo</front-start>
+            <front-end>Press space or right</front-end>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Items</title>
+            <list>&lt;text&gt;</list>
+            <list>&lt;image&gt;</list>
+            <list>&lt;shape&gt;</list>
+            <list>&lt;system&gt;</list>
+            <list>&lt;list&gt;</list>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Text</title>
+            <list>Any color and size</list>
+            <list>Load fonts from files (TTF and FON)</list>
+            <list>Multiline</list>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Images</title>
+            <list>Load many formats</list>
+            <list>Scale</list>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Shapes</title>
+            <list color="cyan">Circle</list>
+            <list color="blue">Line</list>
+            <list color="green">Polygon</list>
+            <list color="gray">Rect</list>
+
+            <shape shape="circle" color="cyan" center="100,600" radius="30"/>
+            <shape shape="line" color="blue" start="150,650" end="200,550"/>
+            <shape shape="polygon" color="green" points="250,600;300,650;350,600;300,550"/>
+            <shape shape="rect" color="gray" start="400,550" end="450,650"/>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Commands</title>
+            <list>Only in "unsecure mode"</list>
+            <sublist>Execute programs only if you want</sublist>
+            <sublist>Safe to load any presentation</sublist>
+        </group>
+        <group>
+            <list>Two methods:</list>
+            <sublist>Execute a program in background</sublist>
+            <sublist>Read its output and create a text item with it</sublist>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Lists</title>
+            <list>Use the depth atribute to create nested lists</list>
+            <list>Four list types:</list>
+            <sublist list-type="enum">Enumerated</sublist>
+            <sublist list-type="circle">Circle</sublist>
+            <sublist list-type="square">Square</sublist>
+            <sublist list-type="rhombus">Rhombus (default)</sublist>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Effects</title>
+            <color-list>Move</color-list>
+            <color-list>Alpha</color-list>
+            <color-list>Vertical Alpha</color-list>
+            <color-list>Horizontal Alpha</color-list>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Move</title>
+
+            <style>
+                .mv1 {open-start: -600,+0; open-time: 20}
+                .mv2 {open-start: +600,+0; open-time: 20}
+                .mv3 {open-start: +0,-400; open-time: 20}
+                .mv4 {open-start: +0,+400; open-time: 20}
+            </style>
+
+            <text align="center" effect-move="mv1">Left to right</text>
+            <text align="center" effect-move="mv2">Right to left</text>
+            <text align="center" effect-move="mv3">Top to bottom</text>
+            <text align="center" effect-move="mv4">Bottom to top</text>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Alpha</title>
+
+            <style>
+                .al1 {open-type: full; open-time: 30}
+            </style>
+
+            <text font-size="200" align="center" effect-alpha="al1">
+                Alpha effect</text>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Horizontal alpha</title>
+
+            <style>
+                .al2 {open-type: horizontal; open-time: 30; open-direction: positive}
+                .al3 {open-type: horizontal; open-time: 30; open-direction: negative}
+            </style>
+
+            <text font-size="200" align="center" effect-alpha="al2">Horizontal</text>
+            <text font-size="200" align="center" effect-alpha="al3">effect</text>
+        </group>
+    </page>
+    <page>
+        <group>
+            <title>Vertical alpha</title>
+
+            <style>
+                .al4 {open-type: vertical; open-time: 30; open-direction: positive}
+                .al5 {open-type: vertical; open-time: 30; open-direction: negative}
+            </style>
+
+            <text font-size="200" align="center" effect-alpha="al4">Vertical</text>
+            <text font-size="200" align="center" effect-alpha="al5">effect</text>
+        </group>
+    </page>
+    <page bgcolor="black">
+            <style>
+                .al6 {
+                    open-type: full; 
+                    open-time: 20;
+                    close-type: full;
+                    close-time: 30;
+                }
+            </style>
+            <group
+                effect-alpha="al6"
+                font-size="100"
+                ttl="25">
+            <text xy="100,200">And this page</text>
+            <text wait="10">shows an interesting</text>
+            <text wait="20">use of the alpha effect and</text>
+            <text wait="30">the wait attribute.</text>
+        </group>
+    </page>
+    <page bgcolor="black">
+        <style>
+            .al7 {
+                open-time: 10;
+                close-time: 10; 
+                close-type: full; 
+                open-type: full;
+            }
+        </style>
+        <group
+                shadow="none"
+                color="white"
+                effect-alpha="al7"
+                font-size="130"
+                ttl="10" 
+                xy="100,300">
+            <text>This is very</text>
+            <text wait="15">similar, but all</text>
+            <text wait="30">text is in the</text>
+            <text wait="45">same line</text>
+        </group>
+    </page>
+    <page bgcolor="black">
+        <style>
+            .al8 {
+                open-time: 20;
+                close-time: 20;
+                type: full;
+            }
+
+            .mv5 {
+                time: 20;
+                open-start: +0,+200;
+                close-end: +0,-120;
+            }
+        </style>
+        <group 
+          align="center"
+          effect-alpha="al8"
+          effect-move="mv5"
+          ttl="18"
+          y="300">
+            <text>Credits</text>
+            <text wait="20">This program and</text>
+            <text wait="40">the XML files</text>
+            <text wait="60">have been written</text>
+            <text wait="80">by a lot of</text>
+            <text wait="100">yellow zombies</text>
+
+            <text wait="140">Music:</text>
+            <text wait="160">WTF? What music??</text>
+
+            <text wait="180">Starring:</text>
+            <text wait="200">this kernel</text>
+            <text wait="220">this python</text>
+            <text wait="240">this pyslide</text>
+            <text wait="270">you?</text>
+        </group>
+        <group>
+            <text xy="50,450" font-size="200">End</text>
+        </group>
+    </page>
+
+</presentation>

@@ -1,0 +1,124 @@
+.TH "pyslide" "1" "0.3" "" ""
+.SH "NAME"
+.LP 
+pyslide \- A presentation program
+.SH "SYNTAX"
+.LP 
+pyslide [\fIoptions\fR] <\fIfilename(s)\fP>
+.SH "DESCRIPTION"
+.LP 
+The presentation is loaded from an XML file. You can compile the presentation if you want to not depend on python\-xml and load it a little bit faster.
+.LP 
+You can open more than one presentation. Pyslide will show them sequentially.
+.SH "OPTIONS"
+.LP 
+.TP
+\fB-v\fR
+Verbose mode. Put more -v (max 5) if you want more output.
+.TP 
+\fB\-f\fR
+Set fullscreen mode on start.
+.TP 
+\fB\-c\fR \fB\-\-compile\fR
+Writes to stdout the python code necesary to create the presentation. The code will load the presentation faster (since it doesn't need to parse an XML file) and doesn't depend on python\-xml. You still depend on the Pyslide package.
+.TP
+\fB-H\fR \fB--html\fR <\fIoutdir\fP>
+Export to HTML. Pyslide will create html files and png images, with the presentation content.
+.TP
+\fB-s\fR \fB--size\fR <\fIsize\fP>
+Set the window/screen size. If you set this argument, Pyslide will ignore the size attribute of the presentation.
+.TP 
+\fB\-k\fR
+By default, Pyslide will set the current working directory to the place where the XML file is located. This is useful to load images and other files that are in that directory. If you don't want to change the directory, use this option.
+.TP
+\fB-p\fR \fIpage-number\fP
+Starts the presentation directly in \fIpage-number\fP. If \fIpage-number\fP is negative, it will start at the end; ie, -1 is the last page, -2 the last but one, etc.
+.TP
+\fB-x\fR \fB--script\fR
+Load the file as a script. See below more information.
+.TP
+\fB-S\fR \fB--standalone\fR
+Make an standalone XML. See below for more information.
+.TP
+\fB-I\fR
+Ignore errors on images. That is, if an image can't be loaded, Pyslide will substitute it with an empty surface (and do a warning) instead of exists
+.TP
+\fB--color-names\fP
+Show all the available color names and exit.
+.TP 
+\fB--help\fR \fB\-h\fR
+Print help information and exit.
+.TP 
+\fB\-\-version\fR
+Print version information and exit.
+.SH "KEYS"
+.LP 
+.TP 
+\fBQ\fR
+Stop the presentation and exit
+.TP 
+\fBF\fR
+Toggle fullscreen
+.TP
+\fB->\fR or \fBespace\fR
+Next item. If there is no more item, go to the next page
+.TP
+\fB<-\fR
+Previous item.
+.TP
+\fBPage down\fR
+Next page
+.TP
+\fBPage up\fR
+Previous page
+.TP
+\fBT\fR 
+Shows a timer.
+.TP
+\fBS\fR
+Shows the current page number.
+.LP
+When you press `S' once, a little bar will be showed at the bottom of
+the page. You can see the current page in that bar.
+.LP
+if you want to see the bar all the time, you have open it with `S'
+and, before it is hidden, press again `S'. The bar will be always
+showed, and updated when you change page. If you want to hide it
+again, press `S'.
+.SH "SCRIPT MODE"
+If you want to use your presentations as ``scripts'' (that is, use it
+as ejecutables files) you can do this with the \fB-x\fR or
+\fB--script\fR option.
+.LP
+When you load the XML files as scripts, Pyslide will ignore the lines
+which begin with a ``#''. After the first line that does not
+start with a ``#'', the rest of content will be loaded completly.
+.LP
+Renember that you have to start the XML file with something like 
+.LP
+    #!/usr/bin/pyslide -x 
+    # Some commments if you want :-)
+    <presentation ...>
+        ..
+.SH "STANDALONE FILES"
+When you make a presentation, you normally use external files (CSS,
+images, etc). Pyslide lets you make an unique XML with everything in
+it. That is, CSS will disappear (alias and classes will be expanded)
+and images will be embedded.
+
+The new XML will be dumped to stdout.
+
+.SH "EXAMPLES"
+.LP 
+To run the presentation in full screen mode
+.LP 
+pyslide \-f foo.xml
+.LP 
+To compile the presentation and run it
+.LP 
+pyslide \-c myslide.xml > myslide.py
+.br 
+python myslide.py
+.SH "AUTHORS"
+.LP 
+Ayose Cazorla <ayose.cazorla@hispalinux.es>

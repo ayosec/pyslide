@@ -1,0 +1,85 @@
+
+maintitle {
+    item-type: text;
+    font-size: 150;
+    color: white;
+    xy: 20,20;
+    keep-always: yes;
+    color: 255,255,150;
+    effect-alpha: eff1;
+}
+
+separator {
+    item-type: shape;
+    shape: line;
+    start: 20,160;
+    width: 10;
+    end: 980,160;
+    color: 255,255,150;
+    keep-always: yes;
+    wait: 10;
+    effect-alpha: eff2;
+}
+
+front-start {
+    item-type: text;
+    ttl: 25;
+    xy: 100, 400;
+    font-size: 100; 
+    color: 255,170,100;
+    effect-alpha: eff3;
+}
+
+front-end {
+    item-type: text;
+    wait: 25;
+    align: center;
+    effect-alpha: eff2;
+}
+
+.eff1 {
+    open-type: vertical;
+    open-time: 20;
+}
+
+.eff2 {
+    open-type: full;
+    open-time: 20;
+}
+
+.eff3 {
+    close-type: full;
+    close-time: 10;
+}
+
+
+title {
+    xy: 40,200;
+    item-type: text;
+    font-size: 70;
+    effect-move: ef-title;
+    effect-alpha: ef-alpha128;
+}
+
+.ef-alpha128 { close-set: 128 }
+
+.ef-title {
+    open-start: -1000,+0;
+    open-end: origin;
+    close-end: 1000,+0;
+    speed: 1000;
+}
+
+sublist {
+    item-type: list;
+    font-size: 40;
+    list-depth: 2;
+}
+
+color-list {
+    item-type: list;
+    for-first-x: +100;
+    list: rhombus;
+    for-even-color: 200,200,255;
+    for-odd-color: 200,255,200;
+}

@@ -1,0 +1,32 @@
+0.4
+
+    * Execute external commands
+    * Built-in lists
+    * Timer and page-number bar
+    * New effects style (more powerfull and easy)
+    * Embedded images
+    * More information on errors
+    * Speed improvement
+    * A lot of bugfixes
+
+
+0.3
+
+    Main changes:
+
+    * Shape items
+    * Items alignment
+    * File font loading
+    * Support for pseudo-lists
+    * Export to web (create PNGs)
+    * Create new tags with CSS
+    * Comments on CSS
+    * Better default-position for items
+
+
+0.2
+
+    * CSS support
+    * New effects: h-alpha and v-alpha
+    * Support for shape (through <shape>)
+    * A lot of bug fixes and performance improvements

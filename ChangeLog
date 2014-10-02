@@ -1,0 +1,213 @@
+2004-03-05  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* setup.py, Pyslide/__init__.py: Updated to the new version
+	* Pyslide/Effects/AlphaEffect.py: (FIX) Oops... implement 'speed'
+    attribute. Don't show the same message many times.
+	* examples/effects.xml: New example for effects.
+
+2004-03-04  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Effects/MoveEffect.py: (NEW) 'center' value for start/end
+	points.
+	* Pyslide/Effects/AlphaEffect.py: (FIX) Make an iteration when the effect
+	is started.
+	* extras/alphaeffect.c: (FIX) An image without can have more than 3
+	bytes
+	* Pyslide/misc.py: (FIX) a little fix..
+	* examples/*: Updating.. not yet complete
+
+2004-03-03  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* extras/*: yeah.. Just Alpha It!
+	* Pyslide/Effects/*: New effects finished (I think..)
+	* Pyslde/Items/*: New effects... again
+	* Pyslide/misc.py: Remove old code for alpha. (FIX) 
+	* Pyslide/Presentation/base.py: More on new effects
+
+2004-02-29  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Items/ItemText.py: (FIX) Error when compute the <text> height.
+	* extras/*, setup.py: New module for alphaeffects.
+	* Pyslide/Effects/*, Pyslide/Items/*, Pyslide/Presentation/*: (NEW) New
+	  . (new new) effects (Did I said they are new?)
+	* Pyslide/Content.py: (FIX) self.__attrs was a list, not a dict.
+	* Pyslide/Items/ItemSystem.py,ItemText.py: (FIX) "The LinuxShow's fixes".
+	* Pyslide/misc.py: (NEW) some functions for points
+	* Pyslide/Main.py: (NEW) -t/--time option to control presentation time
+
+2004-02-20  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Items/{__init__.py,ItemList.py}: (NEW) Built-in lists
+	* Pyslide/Items/ItemText.py: Separete drawstring, to use in lists
+	* Pyslide/Export.py: Remove old-list code
+	* Pyslide/File.py, Pyslide/Presentation/Pages.py: (NEW) <list> tag
+	* examples/*: updated with new lists
+
+2004-02-19  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Presentation/base.py: (NEW) Use mose to change pages.
+	* Pyslide/Main/Images.py: (NEW) Load images by ID, created with <defimage>
+	* Pyslide/Compile.py: Use a different module. (FIX) Better code
+	* Pyslide/File.py, Pyslide/Content.py, Pyslide/Presentation/Pages: (NEW)
+	<defimage> tag, to create embedded images. (NEW) New document structure.
+	* Pyslide/Main/__init__.py: Raise PyslideError if RAISE has a True value.
+	Better use of -v option.
+	* Pyslide/Main/Images.py: (NEW) Support for id:// (<defimage>)
+	* pyslide: Call action()
+	* examples/full.xml: a little change
+
+2004-02-14  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Effects/AlphaEffect.py, MoveEffect.py, Items/__init__.py :
+	Better support when combine open- and close-effects.
+	* Pyslide/File.py: (NEW) Now it is more easy debug XML files.
+	* Pyslide/Presentation/base.py: (FIX) Don't stop keep-always items with a
+	force-stop. (FIX) Set the last stage in prev-page
+	* Pyslide/Presentatiom/Pages.py: (FIX) Don't crash when an invalid bggrad
+	value is given.
+	* examples/full.xml: A little change.
+	
+
+2004-02-13  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Main/, File.py: Organization for the Main part. Main.Images module to
+	control images. (NEW) -I option to ignore image errors
+	* Items/: (NEW) A timer item, with 'T'. (FIX) Erase keep-always items when
+	a page before them is opened. Save the dictionary used to create them.
+	ItemImage uses Main.Images.
+	* Pyslide/misc.py: Remove load_image function
+	* Presentation/: (FIX) keep-always bug. (NEW) Loads fasters and saves a
+	lot of memory, since items are created only when they are needed, and
+	deleted when not. Same for background (NEW) Timer item.
+	* setup.py, pyslide.1: updated 
+	* examples/full.xml: use the caption attribute
+
+2004-02-10  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Items/__init__.py: Change open/close effects. Now use effects
+	states (still unfinished)
+	* Pyslide/Items/ItemSystem.py: More work on <system>
+	* Pyslide/Presentaiton/*: New organization for Presentation module
+	* pyslide: Use SIGCHLD handler in Presentation/commands.py
+	* setup.py, pyslide.1: updated
+
+2004-02-08  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/{Effects,Items}/*: More (I think) organization of the code
+	* Pyslide/File.py: (FIX) presentation size is saved in the compilation
+	code. (FIX) item-type is not required when an alias is set for a built-in
+	tag. (FIX) priority works as expected with for- items.
+	* CHANGES, pyslide.1: Updated
+	* pyslide: Compiled code is output to stdout
+	* examples/shapes.xml: (FIX) Don't set the size
+	* examples/full.{xml,css}: Improved.
+	* setup.py: Updated to create Pyslide.Items and Pyslide.Effects packages.
+
+2004-02-07  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/{Presentation.py, Items.py, File.py}: (NEW) <system> items
+	* Pyslide/Pages.py: (NEW) ReplaceItem exception
+	* pyslide: (NEW) Support for locales, SIGCHLD, and the "unsecure" mode.
+	* README: Updated
+
+2004-02-05  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Presentation.py, Pyslide/Items.py: (NEW) Better page-number bar.
+	* pyslide: (FIX) The first page is now 1, not 0.
+	* pyslide.1: updated
+
+2004-02-04  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Presentation.py, Pyslide/Pages.py: (FIX) Pyslide load
+	presentations faster. New position for page-number.
+	* Pyslide/File.py, pyslide: (NEW) load presentation as scripts. (NEW) Make
+	"standalone presentations"
+	* Pyslide/Items.py: (NEW) Support for embedded images
+	* pyslide.1, setup.py, CHANGES: updated
+
+2004-01-31  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Presentation.py: (FIX) Avoid infinite loop when start with a
+	incorrect page number
+	* Pyslide/File.py: (NEW) for-odd- and for-even- attributes
+	* pyslide: (NEW) --color-names option show all the available color names
+	* README, pyslide.1: Updated
+	* examples: Removed old examples. 
+
+2004-01-21  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/File: Support for creating tags with CSS
+	* pyslide.1, pyslde: updated
+	* examples/full*: updated with new tags
+
+2004-01-18  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* extras/cmisc.c: (FIX) Bug in set_halpha
+	* Pyslide/File.py: (NEW) Support for CSS comments /* multiline */
+	* Pyslide/Presentation.py, pyslide: (NEW) Start the presentation in a
+	concrete page (not only in the first one)
+	* examples/*: New (and maybe better) examples
+
+2004-01-17  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* extras/cmisc.c, Pyslide/Effects.py: A few improvements
+	* Pyslide/Presentation.py: (FIX) when change a page, the items which has
+	no close-effects are removed inmediatly. (NEW) the current page number is
+	showed with 'S' key
+	* Pyslide/Items.py: (NEW) TTF and FON files can be loaded for <text>
+	items, with the font-file attribute.
+
+2004-01-09  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/*: Initial support for export to HTML. Added -s parameter, to
+	set the size of the screen (ignore the size attribute of the presentation)
+
+	* exampples/*: A little fix
+
+2004-01-07  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/Items: "x" and "y" attributes now can be relatives
+	* Pyslide/Effects,Items,Presentation: map_units now doesn't depend 
+	on pygame.display
+
+2004-01-06  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* extras/cmisc, Pyslide/Effects.py: a little optimization
+	* Pyslide/Items.py: New "list", "x" and "y" attributes for items
+	* examples/*: Updated
+
+2004-01-04  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* Pyslide/__init__.py: (FIX) Updated version
+
+	* extras/cmisc.c, setup.py: (FIX) Now uses <pygame/pygame.h>,
+	instead of "pygame.h". Thanks to Tomas Guemes for the report.
+
+	* Pyslide/File.py: (FIX) Fix a bug when read a tag content
+
+	* Pyslide/Presentation.py, Pyslide/Items: (FIX) Better default position for
+	items. (NEW) Support for items alignment. (FIX) Initializes only necesary
+	modules, so it load faster.
+
+	* extras/README.extras, examples/*, README: Updated 
+
+2004-01-03  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* extras/cmisc.c, Pyslide/misc.py, Pyslide/Effects.py: h-alpha
+	and v-alpha effects improved
+	* Pyslide/File.py: Parse is able to load a CSS file
+	with <style source="foobar.css"/>
+	* README, examples/*: Updated
+
+2004-01-03  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* New release: 0.2
+	* CSS support
+	* New effects: h-alpha and v-alpha
+	* Support for shape (through <shape>)
+	* A lot of bug fixes and performance improvements
+
+2003-12-27  Ayose Cazorla   <ayose.cazorla@hispalinux.es>
+
+	* First release: 0.1
+

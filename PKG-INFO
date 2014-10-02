@@ -1,0 +1,16 @@
+Metadata-Version: 1.0
+Name: pyslide
+Version: 0.4
+Summary: A presentation program
+Home-page: http://hispalinux.es/~setepo/pyslide/
+Author: Ayose Cazorla
+Author-email: ayose.cazorla@hispalinux.es
+License: GNU General Public License (GPL)
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: 
+Classifier: Development Status ::  5 - Production/Stable
+Classifier: Environment :: X11 Applications
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: 

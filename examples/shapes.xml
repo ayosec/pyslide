@@ -1,0 +1,72 @@
+<presentation>
+    <page>
+        <group>
+            <shape shape="rect" color="red" width="10" start="10,10" end="990,150" 
+                open-effect-valpha="20"/>
+
+            <shape shape="polygon" color="green" width="10"
+               points="10,210;990,210;990,350;10,350;10,210"
+               open-effect-halpha="20"/>
+
+            <shape shape="line" width="10" color="blue" start="10,400" end="990,400"/>
+            <shape shape="line" width="10" color="blue" start="990,400" end="990,540"/>
+            <shape shape="line" width="10" color="blue" start="990,540" end="10,540"/>
+            <shape shape="line" width="10" color="blue" start="10,540" end="10,400"/>
+        </group>
+    </page>
+    <page>
+        <group shape="line" color="green" width="100"
+            open-effect-alpha="20">
+            <shape
+                open-effect-move="-500,0,20"
+                shape="line" color="brown" start="100,375" end="900,375"/>
+            <shape 
+                open-effect-move="100,100,20"
+                shape="line" color="blue" start="100,100" end="900,650"/>
+            <shape
+                open-effect-move="-100,-100,20"
+                start="900,100" end="100,650"/>
+        </group>
+        <!--
+        <group>
+            <text open-effect-alpha="50" font-size="600">ABC</text>
+        </group>
+        -->
+    </page>
+    <page>
+        <group>
+            <shape 
+                open-effect-alpha="40" shape="circle"
+                center="500,375" radius="300" color="green"/>
+        </group>
+    </page>
+    <page>
+        <group shape="circle" radius="20" color="yellow" close-effect-alpha="10">
+            <shape center="400,100" open-effect-move="400,500,10"/>
+            <shape center="400,700" open-effect-move="100,600,10"/>
+            <shape center="300,200" open-effect-move="400,500,10"/>
+            <shape center="540,100" open-effect-move="-400,300,10"/>
+            <shape center="100,100" open-effect-move="400,200,10"/>
+            <shape center="400,300" open-effect-move="400,500,10"/>
+            <shape center="400,400" open-effect-move="20,500,10"/>
+            <shape center="600,700" open-effect-move="-100,-100,10"/>
+            <shape center="800,500" open-effect-move="-100,-100,10"/>
+            <shape center="700,400" open-effect-move="-100,-300,10"/>
+            <shape center="550,700" open-effect-move="-100,600,10"/>
+            <shape center="100,300" open-effect-move="-100,-600,10"/>
+        </group>
+    </page>
+    <page>
+        <group open-effect-halpha="20">
+            <text font-size="100">This is a shape!!</text>
+            <shape shape="rect" start="0,180" width="0" color="grey" end="1000,750"/>
+        </group>
+    </page>
+    <page>
+        <group>
+            <text>Polygon</text>
+            <shape shape="polygon" 
+                points="200,700;300,200;350,200;450,700;400,700;350,500;300,500;250,700;200,700"/>
+        </group>
+    </page>
+</presentation>

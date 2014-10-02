@@ -1,0 +1,404 @@
+PySlide 0.3
+Ayose Cazorla <ayose.cazorla@hispalinux.es>
+Last modified: 31 Jan 2004
+
+-------------------------------------------
+
+You can install the program using distutils. For example, with
+
+    $ python setup.py install --prefix=/some/dir
+
+you will install both Pyslide modules and the pyslide script. After a correct
+installation, you could start the presentations with
+
+    $ PYTHONPATH=/some/dir/lib/pythonN.N/site-packages/ /some/dir/pyslide file.xml
+
+or with
+
+    $ pyslide file.xml
+
+if you install the package in the defaults directories.
+
+Note that you don't need to install the program to run it, since it
+can be executed from the source directory.
+
+See the examples in the distribution.
+
+-----------------------------------
+ XML Language: A brief description
+-----------------------------------
+
+ N.B.: This description is out of date.
+
+This is a very brief (and not very good :-( ) description of the XML
+language used by Pyslide.
+
+It is very easy to write presentations for Pyslide. There are seven
+tags: presentation, page, group, text, image, shape and system.
+
+ - presentation
+   ============
+   This is the root tag for the file. Its attributes affect to the
+   full presentation.
+   
+   Possible attributes are:
+
+    caption  The caption of the window 
+    size     The size (WIDTHxHEIGHT) of the screen/window
+    bg       An image to use as the default background
+    bgcolor  A color to use as the default background
+
+   See below for info about colors.
+    
+ - page
+   ====
+   Every page in the presentation is defined py a <page> tag.
+
+   Possible attributes are:
+
+    bg      Background image
+    bgcolor Background color
+    bggrad  Background gradient.
+    bgscale If you set an image with "bg", you can control
+            if it is scaled or not. This attribute can be
+            "yes" or "no". By default, it is "yes".
+    ttl     Max time (in tenth of second) that the page can
+            exists. After that time, if the page is still 
+            viewed, it will closed.
+
+ - group
+   =====
+   A group contain a list of items. All the items in a group
+   are showed with the group, but not all the groups in a page
+   are showed at the same time. To see all the groups in a page,
+   you have to open it with <SPACE> or <RIGHT> keys.
+
+   A group doesn't have attributes, but in the XML you can put 
+   attributes in the <group> tag and those attributes will be set 
+   to all its items.
+
+ - text and image
+   ==============
+   Those tags are used to put a text or an image in the page. For text,
+   the content to show is put between <text> and </text>. For images,
+   you put the path of the image in the src attribute, as 
+   <image src="foo.png"/>.
+
+   Common attributes (to both images and texts):
+
+    xy      The x,y position of the item
+    x       The x position. Doesn't change the y value. If you start
+            the value with a '+' or with a '-', the value will be added
+            or reduced with the current X. This is useful if you want to
+            positionate an item relative to its previous item.
+    y       As "x", with the axis Y
+    ttl     Time to leave (in tenth of second). It can be "none".
+    wait    Time to wait before the item starts. It can be "none".
+    open-effect-N
+    close-effect-N
+            Load the effect N. See below for information about effects.
+    keep-always
+            The item never dies. It is always showed in all pages.
+    list    Set a "list image". See below for more information about
+            lists.
+    align   Aligns an item. It can be "left", "center" or "right".
+
+   Attributes for texts
+
+    color       Text color.
+    shadow      Shadow color. It can be "none".
+    font-size   Size of the font. Defaults to 60.
+    font-file   Loads a font from a file. The file has to be TTF or
+                FON 
+    interspace  Set the space betwen lines of text. 
+
+   Attributes for images
+
+    src     Path of the image to load
+    size    Size of the image. By default, it is the same size
+            of the image.
+
+ - shape
+   =====
+
+   Pyslide is able to draw some shapes (really, the shapes are drawn
+   by pygame :-) ). You select a shape with the "shape" attribute. The
+   other attributes depend on the shape, except "color", which has the
+   same meaning.
+
+   The shape available are line, circle, rect and polygon.
+
+   * line
+      Attributes:
+        width   line width
+        start   start point
+        end     end point
+
+      If width is not given, it will be 1 pixel (independently of the
+      size of the canvas)
+
+   * circle
+      Attributes:
+        width   Width of the line
+        center  center point
+        radius  radius
+
+      If width is not given, or it is zero, the circle will be filled
+
+   * rect
+      Attributes:
+        width   line width
+        start   top-left corner
+        end     bottom-right corner
+
+      if width is not given, or it is zer, the rect will be filled.
+
+   * polygon
+      Attributes:
+        width   line width
+        points  List of points, separeted by a semicolon (';')
+
+
+   For example, the following tags will generate the same shapes, but in
+   different places
+
+    <shape shape="rect" color="red" width="10" start="10,10" end="990,150"/>
+
+    <shape shape="polygon" color="green" width="10"
+       points="10,210;990,210;990,350;10,350;10,210"/>
+
+    <shape shape="line" width="10" color="blue" start="10,400" end="990,400"/>
+    <shape shape="line" width="10" color="blue" start="990,400" end="990,540"/>
+    <shape shape="line" width="10" color="blue" start="990,540" end="10,540"/>
+    <shape shape="line" width="10" color="blue" start="10,540" end="10,400"/>
+
+
+ - system
+   ======
+
+   With this tag you can execute external programs. There is two
+   attributes for <system>:
+
+    cmd     The command line to execute. This is executed with "/bin/sh -c"
+    method  This can be "read" or "start". See below for more
+            information about this.
+
+Units
+-----
+
+All the units in the pages are proportionals. That is, Pyslide use a
+virtual surface, which size is 1000x750, and scale all the units using
+
+ x = (x * W) / 1000
+ y = (y * H) / 750
+
+W and H are the dimensions (width and height) of the window. If you
+change the width and height values of the presentation, all the items
+will scale to keep the proportions.
+
+Image size
+----------
+
+You can change the image of a size using the size attribute for
+<image>. The format is "new_width,new_height". If you put a value
+smaller than 10, the value will be multiplied by the dimension. For
+example, for an image with size 100x100
+
+ 1,1 == 100,100
+ 1,2 == 100,200
+ 4,4 == 400,400
+ ...
+
+NOTE: As normal units, the image will be scaled only if you set the
+size attribute. That is, if you don't put it in the <image> tag, the
+image won't be scaled. If you want to scale the image use size 1,1.
+For example
+
+  <image size="1,1" xy="100,100" src="some.png"/>
+
+
+Colors and gradients
+--------------------
+
+The program is very flexible with the colores. You can choose a color
+with its R,G,B form, or with a name. The available colors are listed
+in the pygame.colordict module. You can see them with 
+
+$ python -c 'import pygame.colordict as d; print "\n".join(d.THECOLORS.keys())'
+
+If you set the color with values, you have to separete red-green-blue
+values with commas. For example, to set red 100, green 200 and blue
+60, use "100,200,60".
+
+Gradients are set with two color separated by a dash. You can use both
+names and values. For example, the next gradients are equivalent
+
+"white-black"
+"white-0,0,0"
+"255,255,255-black"
+"255,255,255-0,0,0"
+
+
+Effects
+-------
+
+There is two kind of effects: open-effects and close-effects.
+open-effects starts when the item is showed, and close-effects starts
+when the item is going to be killed. A close-effect does not start if
+not all the open-effects has been finished.
+
+You set an effect with open-effect-NAME and close-effect-NAME. At this
+moment, NAME can be either "alpha", "halpha", "valpha" and "move". The
+attribute value is the effect parameters.
+
+The "move" parameter is "x,y,t" trio. x and y are the distance to the
+item. For an open-effect, x,y is distance where the item will start.
+For a close-effect, x,y is the distance where the item will be killed.
+The last argument, t, is the time (in tenth of second) that the effect
+will be running.
+
+The "alpha", "halpha" and "valpha" parameter is the time that the
+effect will be running. For "valpha" and "halpha" effects you can put
+a negative time, this means that the effect will be from bottom to
+top.
+
+CSS
+---
+
+You can put any thing that you want in it. To put CSS code, use the
+<style> tag. For instance, to create a class
+
+    <style>
+        .title {
+            font-size: 100;
+            color: red;
+            xy: 10,10
+        }
+    </style>
+
+    <text class="title">I am a title</text>
+
+If you want to load a CSS file, you can use the source attribute:
+
+    <style source="some_file.css"/>
+
+
+There is a very useful feature: you can create your own tags with CSS.
+You only need to write them without a dot, and put in its attributes
+the item-type attribute. item-type tells Pyslide what kind of item if
+it. For example, to create a <list> tag, you can do something like
+
+    list {
+        item-type: text;
+        for-first-x: +100;
+        list: rhombus;
+    }
+
+    title {
+        item-type: text;
+        xy: 100,200;
+        font-size: 100;
+    }
+
+And now, in the XML, you can put
+
+    <group>
+        <title>List title</title>
+        <list>First element</list>
+        <list>second</list>
+        <list>...</list>
+    </group>
+
+
+Conditional attributes
+----------------------
+
+You can control when apply an attribute or not, according to its
+position. This is very useful when you are creating tags or classes
+with CSS.
+
+To control the position, you have to start the attribute name with
+"for-<position>-", where position can be "first", "second", "third",
+"odd", "even" or a nunmber. For example
+
+for-first-x: 100;       Apply "x: 100" only to the first element
+for-odd-color: blue;    Apply "color: blue" only to odd elements.
+for-10-list: circle;    Apply "list: circle" only to the 10th element.
+
+Note that the position is incremented when a tag is repeated. When a
+tag with a different name appears, its position is reset. That is, if
+you put something like
+
+    <title>...</title>      First position
+    <list>...</list>        First position
+    <list>...</list>        Second position
+    <list>...</list>        Third position
+    <text>...</text>        First position
+    <list>...</list>        First position, again
+
+
+And, with something like
+
+    <image />
+    <text> </text>
+    <list> </list>
+    <shape />
+    <text> </text>
+
+All of them will be at first position, because there are no several
+consecutive equal labels
+
+Lists
+-----
+
+At this moment, there are not real list. But, if you need to put a
+little symbol close to the item, you can use the "list" attribute.
+
+This is a tricky, and this would have to be better, but this is a
+quick solution, and.. it works :-)
+
+There is three symbols: rhombus, circles and squares:
+
+    <text list="circle">Circle</text>
+    <text list="square">Square</text>
+    <text list="rhombus">Rhombus</text>
+
+
+Executing programs
+------------------
+
+You can execute external programs with the <system> tag. You have to
+set both "cmd" and "method" attributes, altought you can set more
+attributes if you use the "read" method.
+
+ N.B.:
+
+    Obviously, execute external programs is not always secure. You
+    can, for example, download a presentation and try to execute it.
+    If you don't know what the presentation does, you probably want to
+    avoid execute commands
+
+    For this reason, Pyslide has a special mode called «unsecure». If
+    you want to use the <system> tag, you have to start Pyslide in
+    this mode, with the -u option. For example,
+
+        $ pyslide -u file.xml
+
+    Unless -u is used, pyslide will refuse to load a presentation
+    which has a <system> tag.
+
+The "cmd" attribute says to Pyslide which command execute. This string
+is passed directly to /bin/sh, so you can use the shell syntax.
+
+The "method" attribute says to Pyslide how execute the program. It can
+be "read" or "start".
+
+If method is "read", the program will be executed when the page is
+created, and Pyslide will read its output (stdout) and create a text
+item with it. If you put more attributes than "method" and "cmd" in
+the <system> tag, those attributes will be passed to the new item. For
+example, you can put something like
+
+    <system method="read" cmd="uname -a" color="green"/>
+
+If method is "start", the program will be executed in background.
