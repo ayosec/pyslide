@@ -1,0 +1,18 @@
+pyslide (0.4-3) unstable; urgency=low
+
+  * Added patch to fix itemlist thanks to Martijn Pieters.
+
+ -- Tomas Guemes <tomas@enosig.org>  Sat,  6 Nov 2004 12:29:07 +0000
+
+pyslide (0.4-2) unstable; urgency=low
+
+  * Added python to Build-Depends in debian/control, changed python calls with
+    python2.3 in debian/rules thanks to Bastian Kleineidam. (Closes: #266260)
+
+ -- Tomas Guemes <tomas@enosig.org>  Sun, 22 Aug 2004 12:10:05 +0100
+
+pyslide (0.4-1) unstable; urgency=low
+
+  * Initial Release. (closes: #230631)
+
+ -- Tomas Guemes <tomas@enosig.org>  Sat,  06 Mar 2004 16:46:42 +0000

@@ -75,10 +75,10 @@ class ItemText(Item):
 
                 self.interspace = CS.map_units(y = interspace)
 
-    def make_item(self):
+    def make_item(self, margin=0):
         'See Item.make_image for info.'
 
-        return self.drawstring(self.text)
+        return self.drawstring(self.text, margin=margin)
 
     def getfont(self, fontfile, fontsize):
         try:
@@ -86,7 +86,7 @@ class ItemText(Item):
         except (IOError, RuntimeError), e:
             raise misc.PyslideError, 'loading font (%s): %s' %(fontfile, e)
 
-    def drawstring(self, text, font_size = None):
+    def drawstring(self, text, font_size = None, margin=0):
 
         if font_size is None:
             font_size = self.font_size
@@ -95,7 +95,7 @@ class ItemText(Item):
         if self.shadow is not None:
             colors.append(self.shadow)
 
-        max_width = CS.width - self.orig_x
+        max_width = CS.width - (self.orig_x + margin)
         font = self.getfont(self.font_file, font_size)
 
 

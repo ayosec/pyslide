@@ -77,8 +77,6 @@ class ItemList(ItemText):
                     raise misc.PyslideError, 'Invalid value for list-depth: ' + val
 
     def make_item(self):
-        textimage, rect = ItemText.make_item(self)
-
         # font metrics
         font = self.getfont(self.font_file, self.font_size)
         fontheight = font.get_height()
@@ -105,17 +103,21 @@ class ItemList(ItemText):
             else:
                 raise misc.PyslideError, 'Incorrect listtype: ' + str(self.listtype)
 
-        # compose the image
         w = shaperect.width + 20
+
+        # indent
+        if self.depth < 7:
+            self.depth = (self.depth + 1) * 50
+
+        textimage, rect = ItemText.make_item(self,
+            margin=w + CS.map_units(x = self.depth))
+
+        # compose the image
         image = pygame.Surface((w + rect.width, rect.height)).convert_alpha()
         image.fill(0)
         image.blit(shape, (0, shaperect.y))
         image.blit(textimage, (w,0))
         rect = image.get_rect().move(rect.topleft)
-
-        # indent
-        if self.depth < 7:
-            self.depth = (self.depth + 1) * 50
 
         rect.x += CS.map_units(x = self.depth)
 
