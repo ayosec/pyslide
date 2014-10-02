@@ -31,15 +31,16 @@ class InvalidXML(misc.PyslideError):
 
 import xml.sax
 import xml.sax.saxutils
+import xml.sax.handler
 import xml.sax.xmlreader
 
 from Content import Group, Page, Content
             
 defaulttags = ('text', 'image', 'shape', 'system', 'list')
 
-class ContentParser(xml.sax.saxutils.DefaultHandler):
+class ContentParser(xml.sax.handler.ContentHandler):
     def __init__(self, main, filename):
-        xml.sax.saxutils.DefaultHandler.__init__(self)
+        xml.sax.handler.ContentHandler.__init__(self)
 
         self.filename = filename
         self.__content = Content()
